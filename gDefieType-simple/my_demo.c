@@ -41,9 +41,9 @@ static void my_demo_set_property(GObject *object, guint prop_id, const GValue *v
 		case PROP_NAME:
 			self->name = g_value_dup_string(value);
 			break;
-		case PROP_AGE:
-			self->age = g_value_get_int64(value);
-			break;
+		//case PROP_AGE:
+		//	self->age = g_value_get_int64(value);
+		//	break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
 			break;
@@ -60,9 +60,9 @@ static void my_demo_get_property(GObject *object, guint prop_id, GValue *value, 
 		case PROP_NAME:
 			g_value_set_string(value, self->name);
 			break;
-		case PROP_AGE:
-			g_value_set_int64(value, self->age);
-			break;
+		//case PROP_AGE:
+		//	g_value_set_int64(value, self->age);
+		//	break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
 			break;
@@ -90,6 +90,7 @@ static void my_demo_class_init(MyDemoClass *klass)
 							    G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)
 					);
 
+#if 0
 	g_object_class_install_property(object_class,
 					PROP_AGE,
 					g_param_spec_int64 ("age",
@@ -98,6 +99,7 @@ static void my_demo_class_init(MyDemoClass *klass)
 							    G_MININT64, G_MAXINT64, 0,
 							    G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)
 					);
+#endif
 
 }
 
@@ -105,6 +107,7 @@ static void my_demo_class_init(MyDemoClass *klass)
 static void my_demo_init(MyDemo *self)
 {
 	printf("%s\n", __FUNCTION__);
+    self->age=20;
 }
 
 static void my_demo_dispose(GObject *object)
@@ -131,7 +134,7 @@ MyDemo *my_demo_new(const gchar *name, gint64 age)
 	MyDemo *demo;
 	demo = MY_DEMO(g_object_new(MY_TYPE_DEMO,
 				"name", name,
-				"age", age,
+				//"age", age,
 				NULL));
 
 	printf("get property name:%s, age:%ld\n", demo->name, demo->age);
