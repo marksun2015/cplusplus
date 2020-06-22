@@ -8,8 +8,6 @@
 #define VIEWER_TYPE_FILE viewer_file_get_type ()
 G_DECLARE_FINAL_TYPE (ViewerFile, viewer_file, VIEWER, FILE, GObject)
 
-//#define VIEWER_FILE(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), VIEWER_TYPE_FILE, ViewerFile)) 
-
 struct _ViewerFile
 {
 	GObject parent_instance;

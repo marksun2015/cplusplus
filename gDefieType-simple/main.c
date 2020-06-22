@@ -10,12 +10,6 @@ static gboolean signal_handler(gpointer user_data)
 	return FALSE;
 }
 
-void handler_receive_msg(GObject *sender, char *name, gpointer data)
-{
-	MyDemo *demo = G_TYPE_CHECK_INSTANCE_CAST(sender, my_demo_get_type(), MyDemo);
-	printf("handler: [%s] from [%s: %ld]\n", name, demo->priv->name, demo->priv->age);
-}
-
 int main(int argc, char* argv[])
 {
 #if !GLIB_CHECK_VERSION(2,32,0)
@@ -42,7 +36,6 @@ int main(int argc, char* argv[])
 		g_free(name);
 	}
 
-	//析构
 	for(i = 0; i < len; i++){
 		printf("destruction demos[%d]\n", i);
 		g_object_unref(demos[i]);

@@ -8,7 +8,7 @@ enum
 	N_PROPERTIES
 };
 
-#define MY_DEMO_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), MY_TYPE_DEMO, MyDemoPrivate))
+//#define MY_DEMO_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), MY_TYPE_DEMO, MyDemoPrivate))
 static void my_demo_init(MyDemo *self);
 static void my_demo_class_init(MyDemoClass *klass);
 
@@ -35,17 +35,14 @@ static void my_demo_set_property(GObject *object, guint prop_id, const GValue *v
 	MyDemo *self;
 	g_return_if_fail(object != NULL);
 	self = MY_DEMO (object);
-	//self->priv = MY_DEMO_GET_PRIVATE(self);
 
 	switch (prop_id)
 	{
 		case PROP_NAME:
-	        printf("set property name........%s\n",g_value_dup_string(value));
-			self->priv->name = g_value_dup_string(value);
+			self->name = g_value_dup_string(value);
 			break;
 		case PROP_AGE:
-	        printf("set property age........%ld\n",g_value_get_int64(value));
-			self->priv->age = g_value_get_int64(value);
+			self->age = g_value_get_int64(value);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
@@ -61,10 +58,10 @@ static void my_demo_get_property(GObject *object, guint prop_id, GValue *value, 
 	switch (prop_id)
 	{
 		case PROP_NAME:
-			g_value_set_string(value, self->priv->name);
+			g_value_set_string(value, self->name);
 			break;
 		case PROP_AGE:
-			g_value_set_int64(value, self->priv->age);
+			g_value_set_int64(value, self->age);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
@@ -84,7 +81,6 @@ static void my_demo_class_init(MyDemoClass *klass)
 	object_class->set_property = my_demo_set_property;
 	object_class->get_property = my_demo_get_property;
 
-    printf("g_object_class_install_property name \n");
 	g_object_class_install_property(object_class,
 					PROP_NAME,
 					g_param_spec_string("name",
@@ -94,7 +90,6 @@ static void my_demo_class_init(MyDemoClass *klass)
 							    G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)
 					);
 
-    printf("g_object_class_install_property age \n");
 	g_object_class_install_property(object_class,
 					PROP_AGE,
 					g_param_spec_int64 ("age",
@@ -104,15 +99,12 @@ static void my_demo_class_init(MyDemoClass *klass)
 							    G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)
 					);
 
-	// 如果對struct MyDemoPrivate ⾥⾯添加了成员变量，则执⾏下⾯这⾏代码
-	g_type_class_add_private(klass, sizeof(MyDemoPrivate));
 }
 
 //实例结构体初始化函数
 static void my_demo_init(MyDemo *self)
 {
 	printf("%s\n", __FUNCTION__);
-	self->priv = MY_DEMO_GET_PRIVATE(self);
 }
 
 static void my_demo_dispose(GObject *object)
@@ -128,8 +120,8 @@ static void my_demo_finalize(GObject *object)
 	g_return_if_fail(object != NULL);
 	self = MY_DEMO(object);
 
-	if (self->priv->name)
-		g_free (self->priv->name);
+	if (self->name)
+		g_free (self->name);
 	
 	G_OBJECT_CLASS(my_demo_parent_class)->finalize(object);
 }
@@ -141,6 +133,7 @@ MyDemo *my_demo_new(const gchar *name, gint64 age)
 				"name", name,
 				"age", age,
 				NULL));
-	printf("get property name:%s, age:%ld\n", demo->priv->name, demo->priv->age);
+
+	printf("get property name:%s, age:%ld\n", demo->name, demo->age);
 	return demo;
 }
