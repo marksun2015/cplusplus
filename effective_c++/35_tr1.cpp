@@ -39,6 +39,12 @@ public:
 
 };
 
+/*
+「函式物件」(Function Object) 或 「函子」(Functor) 是實作 operator() 的任何類型。 
+這個運算子稱為 「呼叫運算子」 (Call Operator)，有時也稱為 
+「應用運算子」(Application Operator)。 C++ 標準程式庫主要是將函式物件當作容器的
+排序準則來使用，以及用於演算法中。
+ */
 /* func object */
 struct LoseHealthQuickly{
 	int operator()(const GameCharacter& gc) const{

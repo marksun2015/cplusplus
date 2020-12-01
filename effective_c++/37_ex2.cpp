@@ -4,7 +4,8 @@ using namespace std;
 
 class Shape{
 public:
-	//宣告為non-virtual  
+	// 宣告為non-virtual, 不會被覆寫   
+	// 這個設計清楚使得draw函數的預設值,為Red  
 	void draw(const string& color = "red") const{
 		doDraw(color);
 	}

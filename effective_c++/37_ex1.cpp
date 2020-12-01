@@ -11,7 +11,7 @@ public:
 class Rectangle :public Shape{
 public:
 	virtual void draw(const string& color = "green") const{
-		cout << "Rectangle draw" << color << endl;
+		cout << "Rectangle draw: " << color << endl;
 	}
 };
 
@@ -33,17 +33,22 @@ int main(){
 	//case1
 	Shape* pr = new Rectangle;
 	pr->draw(); //Red
-	//因為宣告為Shape(statically bind), 編譯時statically binding已經榜了default:red  
-	//virtual在dynamic binding時, c++效率關係, 會去找靜態榜定的default:red   
+	//因為宣告為Shape(statically bind), 編譯時statically binding已經binding了
+	//shape class的default:red,   
+	//virtual在dynamic binding時,不會找Retangle的default::green  
+	//因為 c++效率關係, 動態時期決定default value機制比較慢且複雜   
+	//所以會去找靜態榜定的default:red   
 
 	//case2
 	Shape* pc = new Circle;  	
-	pc->draw(); //Red  		//可以不指定參數, 因為dynamic binding, 會從base class繼承draw  
+	pc->draw(); //Red  		
+	//可以不指定參數, 因為dynamic binding, 會從base class繼承draw  
 
-	//case4
+	//case3
 	Circle c;
-	c.draw("black"); //black 	//要指定參數, 因為statically binding, 不會從base class繼承default draw  
-					//不指定的話, 編議會失敗 
+	c.draw("black"); //black 	
+	//要指定參數, 因為statically binding, 不會從base class繼承default draw  
+	//不指定的話, 編議會失敗 
 	
 	//case5
 	//Rectangle* pr1 = new Rectangle;
