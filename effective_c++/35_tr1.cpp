@@ -4,7 +4,7 @@
 using namespace std;
 
 class GameCharacter;
-short defaultHealthCalc(const GameCharacter& gc);//注意其返回类型不是int
+short defaultHealthCalc(const GameCharacter& gc); //注意返回類型不是int
 
 class GameCharacter{
 public:
@@ -39,6 +39,7 @@ public:
 
 };
 
+/* func object */
 struct LoseHealthQuickly{
 	int operator()(const GameCharacter& gc) const{
 		int retVal = gc.getInitialValue();
@@ -47,25 +48,25 @@ struct LoseHealthQuickly{
 	}
 };
 
+/* member func */
 class GameLevel{
 public:
-	float loseHealthSlowly(const GameCharacter& gc) const{//注意返回类型不是int
+	float loseHealthSlowly(const GameCharacter& gc) const{  //注意返回類型不是int
 		float retVal = static_cast<float>(gc.getInitialValue());
 		retVal /= 2;
 		return retVal;
 	}
 };
 
-//////////////////////////////////////////////////
 int main(){
-	EvilBadGuy badGuy1;//默认普通函数计算健康指数
+	EvilBadGuy badGuy1;			//普通函數計算健康指數  
 	cout << badGuy1.healthValue() << endl;
 
-	LoseHealthQuickly loseHealthQuickly;//函数对象计算健康指数
+	LoseHealthQuickly loseHealthQuickly;	//函數物件(func object)計算健康指數 
 	EvilBadGuy badGuy2(loseHealthQuickly);
 	cout << badGuy2.healthValue() << endl;
 
-	GameLevel currentLevel;//成员函数计算健康指数
+	GameLevel currentLevel;			//成員函數(member function)計算健康指數  
 	EvilBadGuy badGuy3(bind(&GameLevel::loseHealthSlowly, currentLevel, placeholders::_1));
 	cout << badGuy3.healthValue() << endl;
 

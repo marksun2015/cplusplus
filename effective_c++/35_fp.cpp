@@ -14,7 +14,7 @@ public:
 	explicit GameCharacter(HealthCalcFunc hfc = defaultHealthCalc)
 	: healthFunc(hfc)
 	{
-		cout << ">> GameCharacter: " << endl;
+		//cout << ">> GameCharacter: " << endl;
 	}
 
 	int healthValue() const 
@@ -41,7 +41,7 @@ public:
 	explicit EvilBadGuy(HealthCalcFunc hcf = defaultHealthCalc) 
 	: GameCharacter(hcf)
 	{
-		cout << ">> EvilBadGuy " << endl;
+		//cout << ">> EvilBadGuy " << endl;
 	}
 
 	virtual int getInitialValue() const
@@ -66,14 +66,10 @@ int loseHealthSlowly(const GameCharacter& gc){
 
 ////////////////////////////////////
 int main(){
-	cout << ">> 1" << endl;
 	EvilBadGuy badGuy1(loseHealthQuickly);
-	cout << ">> 2" << endl;
 	cout << badGuy1.healthValue() << endl;
 
-	cout << ">> 3" << endl;
 	EvilBadGuy badGuy2(loseHealthSlowly);
-	cout << ">> 4" << endl;
 	cout << badGuy2.healthValue() << endl;
 
 	return 0;
