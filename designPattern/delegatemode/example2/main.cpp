@@ -12,7 +12,7 @@ public:
 class RemoteHostA : public Host
 {
 public:
-	void f() {
+	void f() override {
 		cout << "A::f()" << endl;
 	}
 };
@@ -20,7 +20,7 @@ public:
 class RemoteHostB : public Host
 {
 public:
-	void f() {
+	void f() override {
 		cout << "B::f()" << endl;
 	}
 };
@@ -31,15 +31,19 @@ class RemoteHost : public Host
 {
 public:
 	explicit RemoteHost() 
-	{ mHost = new RemoteHostA;}
+	{
+        mHost_ = new RemoteHostA;
+    }
 
-    void f() { mHost->f(); }
+    void f() {
+        mHost_->f();
+    }
  
-    void connectA() { mHost = new RemoteHostA(); }
-    void connectB() { mHost = new RemoteHostB(); }
+    void connectA() { mHost_ = new RemoteHostA(); }
+    void connectB() { mHost_ = new RemoteHostB(); }
 
 private:
-	Host *mHost;
+	Host *mHost_;
 };
 
 int main()
@@ -48,10 +52,10 @@ int main()
 
     remote->f();         // A::f()
 
-    remote->connectB();
+    remote->connectB();  // 可以改成create  ex:remote->createB()
     remote->f();         // B::f()
 
-    remote->connectA();
+    remote->connectA();  // 可以改成create  ex:remote->createA()
     remote->f();         // A::f()
 
     return 0;
