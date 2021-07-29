@@ -13,6 +13,7 @@ class RemoteHostA : public Host
 {
 public:
 	void f() override {
+        //Remote host A 做的事情
 		cout << "A::f()" << endl;
 	}
 };
@@ -21,7 +22,9 @@ class RemoteHostB : public Host
 {
 public:
 	void f() override {
+        //Remote host B 做的事情
 		cout << "B::f()" << endl;
+        //委託不同host做f()，但是，每個host f()做的事情會不一樣
 	}
 };
 
