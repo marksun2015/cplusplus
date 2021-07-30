@@ -51,6 +51,9 @@ private:
 
 int main()
 {
+    //The RemoteHost class can delegate to RemoteHostA or RemoteHostB. 
+    //代理人RemoteHost 可以代理 RemoteHostA 或是 RemoteHostB 
+    //都是執行f()，代理不同Host 會有不同結果  
     RemoteHost *remote = new RemoteHost();
 
     remote->f();         // A::f()
