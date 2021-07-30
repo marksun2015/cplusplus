@@ -1,3 +1,6 @@
+//https://www.badprog.com/c-design-pattern-proxy
+
+
 #include <memory>
 #include <iostream>
 #include "pageProxy.h"
