@@ -5,6 +5,8 @@
 #include <string>
 #include <cstdlib>
 
+using namespace std;
+
 #define MAX_MERGE_FILE 4
 typedef struct FileInfo_S
 {
@@ -49,6 +51,8 @@ bool check_OS_date(const char *path)
     unsigned int year;
     unsigned int mon;
     unsigned int day;
+    int position;
+    string delimiter = " ";
 
     std::ifstream fin_fw(path, std::ios::binary);
     FileHead_T head;
@@ -59,11 +63,14 @@ bool check_OS_date(const char *path)
     date_fw = year*10000 + mon*100 + day;
     std::cout << "fw:" << date_fw << std::endl;
     fin_fw.close();
-  
-    std::ifstream fin_v("/etc/version");
-    std::string os_version;
-    getline(fin_v, os_version); 
-    std::string get_date = os_version.substr(os_version.find_last_of(' ')).substr(1,8);
+ 
+    ifstream fin_v("/etc/version");
+    string os_version;
+    getline(fin_v, os_version);
+    position = nthSubstr(3, os_version, delimiter);
+    if(position < 0)
+        return false;
+    string get_date = os_version.substr(position + 1, 8);
     fin_v.close();
     
     date_os = atoi(get_date.c_str());
