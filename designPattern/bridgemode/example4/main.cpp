@@ -2,21 +2,21 @@
 #include <cstdint>
 #include <memory>
 
-class PlatformCpu {
+class CpuType {
     public: 
-        virtual ~PlatformCpu() = default;
+        virtual ~CpuType() = default;
 
     virtual uint64_t get_unique_id() = 0;
 };
 
-class AM335X_cpu : public PlatformCpu{
+class CpuAm335x : public CpuType{
     public:
       uint64_t get_unique_id() override {
         return 0xabcd;
       }
 };
 
-class IMX6ULL_cpu : public PlatformCpu{
+class CpuImx6ull : public CpuType{
     public:
         uint64_t get_unique_id() override {
             return (((uint64_t) get_id()) << 32) | ((uint64_t) get_id());
@@ -42,9 +42,9 @@ class NandDevice {
     protected:
 };
 
-class CryptoProider {
+class CryptoProcess {
     public: 
-        CryptoProider(const std::shared_ptr<PlatformCpu> platform_cpu) : platform_cpu(platform_cpu) {}
+        CryptoProcess(const std::shared_ptr<CpuType> platform_cpu_) : platform_cpu_(platform_cpu_) {}
 
         void generate_sha1_hash_key() {
             //auto hashkey = std::make_shared<unsigned char>(20);
@@ -54,24 +54,24 @@ class CryptoProider {
 
             //....hash and return 20 byte hash key
             //std::cout << "generate_hash_key " << std::hex << platform_cpu->get_unique_id() << std::endl;
-            std::cout << "generate_hash_key " << platform_cpu->get_unique_id() << std::endl;
+            std::cout << "generate_hash_key " << platform_cpu_->get_unique_id() << std::endl;
         }
         
         void write_hash_key(){
-            nand_device = std::make_shared<NandDevice>();
+            nand_device_ = std::make_shared<NandDevice>();
             //std::shared_ptr<unsigned char> hashkey = std::make_shared<unsigned char>(20);
             generate_sha1_hash_key();
-            nand_device->write(sha1_hash_key, 10);
+            nand_device_->write(sha1_hash_key, 10);
 
         }
     protected:
-        std::shared_ptr<PlatformCpu> platform_cpu;
-        std::shared_ptr<NandDevice> nand_device;
+        std::shared_ptr<CpuType> platform_cpu_;
+        std::shared_ptr<NandDevice> nand_device_;
         unsigned char sha1_hash_key[20]; 
 };
 
 int main() {
-    std::shared_ptr<PlatformCpu> imx6ull_cpu = std::make_shared<IMX6ULL_cpu>();
-    std::shared_ptr<CryptoProider> crypto_proider = std::make_shared<CryptoProider>(imx6ull_cpu);
-    crypto_proider->write_hash_key();
+    std::shared_ptr<CpuType> imx6ull_cpu_ = std::make_shared<CpuImx6ull>();
+    std::shared_ptr<CryptoProcess> crypto_proider_ = std::make_shared<CryptoProcess>(imx6ull_cpu_);
+    crypto_proider_->write_hash_key();
 }
