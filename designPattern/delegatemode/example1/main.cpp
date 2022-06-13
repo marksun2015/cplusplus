@@ -95,7 +95,8 @@ int main()
 	SchoolGirl *jiaojiao = new SchoolGirl;
 	jiaojiao->setName("李嬌嬌");
 
-    /* SchoolGirl2的實作方式不同，會有不同效果 */
+    /* SchoolGirl2的實作方式不同，
+       送不同花，送不同巧克力 */
 	//SchoolGirl *jiaojiao = new SchoolGirl2;
 	//jiaojiao->setName("李滴滴");
 

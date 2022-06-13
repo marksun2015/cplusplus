@@ -77,13 +77,14 @@ void ClientCode(const Subject &subject) {
 int main() {
   std::cout << "Client: Executing the client code with a real subject:\n";
   RealSubject *real_subject = new RealSubject;
+  //RealSubject *real_subject = new RealSubject2; //new另外一個實體，給代理去處理
   ClientCode(*real_subject);
 
   std::cout << "\n";
   std::cout << "Client: Executing the same client code with a proxy:\n";
   Proxy *proxy = new Proxy(real_subject);
   ClientCode(*proxy);
-
+  
   delete real_subject;
   delete proxy;
   return 0;
