@@ -95,8 +95,11 @@ int main()
 	SchoolGirl *jiaojiao = new SchoolGirl;
 	jiaojiao->setName("李嬌嬌");
 
-	Proxy *daili = new Proxy(jiaojiao);
+    /* SchoolGirl2的實作方式不同，會有不同效果 */
+	//SchoolGirl *jiaojiao = new SchoolGirl2;
+	//jiaojiao->setName("李滴滴");
 
+	Proxy *daili = new Proxy(jiaojiao);
 	daili->GiveDolls();
 	daili->GiveFlowers();
 	daili->GiveChocolate();
