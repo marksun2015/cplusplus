@@ -19,10 +19,13 @@ int main() {
     mp_price.insert({"HarryPoter", 500});
     mp_price.insert({"WebWorld", 400});
     mp_price.insert({"DuckLife", 300});
+    mp_price.insert(std::make_pair("Java",250));
 
     book_table = {mp_price.begin(), mp_price.end()};
 
     //sort_price(mp_price, book_table);
+    
+    book_table.push_back(std::make_pair("C++Primer",650)) ;
 
     sort(book_table.begin(), book_table.end(),
             [](auto x, auto y){
