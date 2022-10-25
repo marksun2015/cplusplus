@@ -3,23 +3,23 @@
 
 using namespace std;
 
-class chapter {          //被包的那個不知道該怎麼找到他的值
+class Chapter {          //被包的那個不知道該怎麼找到他的值
     public:
         string  chap_name;
         int     paragraph;
         int     pages;
 };
 
-class book {             //book可能會有幾萬筆資料。
+class Book {             //book可能會有幾萬筆資料。
     public:
         string  name;
         int     all_pages;
-        chapter ch;
+        Chapter ch;
 };
 
 int main() {
-    vector <book> book_table;
-    book temp;
+    vector <Book> book_table;
+    Book temp;
 
     temp.name = "Hello";
     temp.all_pages = 10;
