@@ -6,6 +6,12 @@
 
 using namespace std;
 
+void sort_price(std::map<string, int> &strmap, vector<pair<string, int>> &vec) {
+  vec = {strmap.begin(), strmap.end()};
+  sort(vec.begin(), vec.end(),
+    [](auto x, auto y) { return x.second < y.second; });
+}
+    
 int main() {
     std::map <string, int> mp_price;
     std::vector <pair<string, int>> book_table;
@@ -15,6 +21,8 @@ int main() {
     mp_price.insert({"DuckLife", 300});
 
     book_table = {mp_price.begin(), mp_price.end()};
+
+    //sort_price(mp_price, book_table);
 
     sort(book_table.begin(), book_table.end(),
             [](auto x, auto y){
