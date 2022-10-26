@@ -13,7 +13,7 @@ enum OS_TYPE{
 class AbstractProduct
 {
     public:
-        AbstractProduct(string name) :mname(name){}
+        explicit AbstractProduct(string name) :mname(name){}
         virtual void operation() = 0;
         virtual ~AbstractProduct(){}
 
@@ -24,7 +24,7 @@ class AbstractProduct
 class ProductA : public AbstractProduct
 {
     public:
-        ProductA(string name) :AbstractProduct(name){}
+        explicit ProductA(string name) :AbstractProduct(name){}
         ~ProductA(){}
 
         void operation() override
@@ -36,7 +36,7 @@ class ProductA : public AbstractProduct
 class ProductB : public AbstractProduct
 {
     public:
-        ProductB(string name) :AbstractProduct(name){}
+        explicit ProductB(string name) :AbstractProduct(name){}
         ~ProductB(){}
 
         void operation() override
@@ -48,6 +48,9 @@ class ProductB : public AbstractProduct
 class Factory
 {
     public:
+        explicit Factory(){}
+        ~Factory(){}
+
         std::unique_ptr <AbstractProduct> createProduct(int os)
         {
             switch (os)
@@ -72,7 +75,7 @@ int main()
 #if 1
     auto pap = f->createProduct(Linux);
     pap->operation();
-    
+
     auto pbp = f->createProduct(Windows);
     pbp->operation();
 #else
