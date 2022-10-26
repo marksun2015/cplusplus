@@ -28,7 +28,7 @@ int main() {
     //std::sort(nums.begin(), nums.end()[](int a, int b){
     //            return a > b; 
     //            });    
-    std::sort(nums.begin(), nums.end()[](int a, int b){
+    std::sort(nums.begin(), nums.end());
     for (auto n : nums) 
         std::cout << "n: " << n << std::endl;
 
