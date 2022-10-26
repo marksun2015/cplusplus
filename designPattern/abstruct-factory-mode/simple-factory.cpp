@@ -1,4 +1,7 @@
 #include<iostream>
+#include<string>
+#include<memory>
+
 using namespace std;
 
 class AbstractProduct
@@ -7,41 +10,47 @@ class AbstractProduct
         AbstractProduct(string name) :mname(name){}
         virtual void operation() = 0;
         virtual ~AbstractProduct(){}
+
     protected:
         string mname;
 };
+
 class ProductA : public AbstractProduct
 {
     public:
         ProductA(string name) :AbstractProduct(name){}
         ~ProductA(){}
-        virtual void operation()
+
+        void operation() override
         {
-            cout << "ProductA::Operation()" << endl;
+            cout << "ProductA::Operation() show name:" << mname << endl;
         }
 };
+
 class ProductB : public AbstractProduct
 {
     public:
         ProductB(string name) :AbstractProduct(name){}
         ~ProductB(){}
-        virtual void operation()
+
+        void operation() override
         {
-            cout << "ProductB::Operation()" << endl;
+            cout << "ProductB::Operation() show name:" << mname << endl;
         }
 };
+
 class Factory
 {
     public:
-        AbstractProduct* createProduct(int flag)
+        std::unique_ptr <AbstractProduct> createProduct(int os)
         {
-            switch (flag)
+            switch (os)
             {
                 case 1:
-                    return new ProductA("A");
+                    return std::make_unique<ProductA>("Linux");
                     break;
                 case 2:
-                    return new ProductB("B");
+                    return std::make_unique<ProductB>("Windows");
                     break;
                 default:
                     return NULL;
@@ -52,13 +61,13 @@ class Factory
 
 int main()
 {
-    Factory f;
-    AbstractProduct* pap = f.createProduct(1);
+    std::unique_ptr <Factory> f = std::make_unique <Factory>();
+
+    auto pap = f->createProduct(1);
     pap->operation();
-    AbstractProduct* pbp = f.createProduct(2);
+    
+    auto pbp = f->createProduct(2);
     pbp->operation();
-    delete pap;
-    delete pbp;
 
     return 0;
 }
