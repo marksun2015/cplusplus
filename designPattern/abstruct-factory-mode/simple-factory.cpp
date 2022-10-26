@@ -83,6 +83,14 @@ int main()
     os_map[Windows]->operation();
 #endif
 
+#if 0
+    std::map<int,std::unique_ptr <AbstractProduct>> os_map;
+    os_map.insert(std::make_pair(Linux, std::make_unique<ProductA>("Linux")));
+    os_map.insert(std::make_pair(Windows, std::make_unique<ProductA>("Linux")));
+    os_map[Linux]->operation();
+    os_map[Windows]->operation();
+#endif
+
     return 0;
 }
 
