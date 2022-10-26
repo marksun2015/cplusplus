@@ -22,6 +22,14 @@ int main() {
     for (auto& s : ret) {
         cout << s << "\n";
     }
+    
+    std::string str2 = "This0is0a0c++0string";
+    int pos = str2.find('s');
+    std::cout << "pos: " << pos << std::endl;
+    str2.erase(0, pos);
+    std::cout << "str2: " << str2 << std::endl;
+    std::cout << "sub str2(0~5): " << str2.substr(0, 5) << std::endl;
+
     return 0;
 }
 
