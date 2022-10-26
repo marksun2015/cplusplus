@@ -24,6 +24,7 @@ int main() {
     auto it3 = std::min_element(nums.begin(), nums.end());
     std::cout << "min element " << *it3 << std::endl;
 
+    //std::sort(nums.begin(), nums.end(), std::greater<int>());    
     std::sort(nums.begin(), nums.end());    
     for (auto n : nums) 
         std::cout << "n: " << n << std::endl;
