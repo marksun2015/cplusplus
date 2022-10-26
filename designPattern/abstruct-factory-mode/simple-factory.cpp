@@ -69,13 +69,19 @@ int main()
 {
     std::unique_ptr <Factory> f = std::make_unique <Factory>();
 
+#if 1
     auto pap = f->createProduct(Linux);
     pap->operation();
     
     auto pbp = f->createProduct(Windows);
     pbp->operation();
-
-    //std::map<int,std::unique_ptr <AbstractProduct>>
+#else
+    std::map<int,std::unique_ptr <AbstractProduct>> os_map;
+    os_map.insert(std::make_pair(Linux, f->createProduct(Linux)));
+    os_map.insert(std::make_pair(Windows, f->createProduct(Windows)));
+    os_map[Linux]->operation();
+    os_map[Windows]->operation();
+#endif
 
     return 0;
 }
