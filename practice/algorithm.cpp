@@ -25,7 +25,10 @@ int main() {
     std::cout << "min element " << *it3 << std::endl;
 
     //std::sort(nums.begin(), nums.end(), std::greater<int>());    
-    std::sort(nums.begin(), nums.end());    
+    //std::sort(nums.begin(), nums.end()[](int a, int b){
+    //            return a > b; 
+    //            });    
+    std::sort(nums.begin(), nums.end()[](int a, int b){
     for (auto n : nums) 
         std::cout << "n: " << n << std::endl;
 
