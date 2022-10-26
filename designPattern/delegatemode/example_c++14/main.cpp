@@ -54,18 +54,18 @@ class Box {
         void show();
 
     private:
-        unique_ptr <Tool> tool_pen; 
+        unique_ptr <Tool> tool_pen_; 
 };
 
-Box::Box(std::unique_ptr <Tool> pen){
-    tool_pen = std::move(pen);
+Box::Box(std::unique_ptr <Tool> pen):tool_pen_(std::move(pen)){
+    //tool_pen = std::move(pen);
 }
 
 Box::~Box(){}
 
 void Box::show(){
     std::cout << "show ";    
-    tool_pen->write(2);
+    tool_pen_->write(2);
 }
 
 void solve(std::istream &is, std::ostream &os) {
@@ -82,6 +82,7 @@ void solve(std::istream &is, std::ostream &os) {
 
     //unique_ptr <ToolPen> pen = make_unique <ToolPen> ();
     //unique_ptr <Box> box = make_unique <Box> (std::move(pen));
+    
     unique_ptr <ToolPencil> pencil = make_unique <ToolPencil> ();
     unique_ptr <Box> box = make_unique <Box> (std::move(pencil));
 
