@@ -1,8 +1,14 @@
 #include<iostream>
 #include<string>
 #include<memory>
+#include<map>
 
 using namespace std;
+
+enum OS_TYPE{
+    Linux,
+    Windows
+};
 
 class AbstractProduct
 {
@@ -46,10 +52,10 @@ class Factory
         {
             switch (os)
             {
-                case 1:
+                case Linux:
                     return std::make_unique<ProductA>("Linux");
                     break;
-                case 2:
+                case Windows:
                     return std::make_unique<ProductB>("Windows");
                     break;
                 default:
@@ -63,11 +69,13 @@ int main()
 {
     std::unique_ptr <Factory> f = std::make_unique <Factory>();
 
-    auto pap = f->createProduct(1);
+    auto pap = f->createProduct(Linux);
     pap->operation();
     
-    auto pbp = f->createProduct(2);
+    auto pbp = f->createProduct(Windows);
     pbp->operation();
+
+    //std::map<int,std::unique_ptr <AbstractProduct>>
 
     return 0;
 }
