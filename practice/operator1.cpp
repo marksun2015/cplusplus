@@ -4,12 +4,17 @@ class Power {
     int kick;
     int punch;
     public:
-    Power(int kick = 0, int punch = 0) {
-        this->kick = kick; 
-        this->punch = punch;
-    }
-    void show();
-    Power& operator<<(int n);
+        Power(int kick = 0, int punch = 0) {
+            this->kick = kick; 
+            this->punch = punch;
+        }
+        void show();
+        Power& operator<<(int n);
+    
+    public:
+        int fkick;
+        int fpunch;
+        
     friend Power operator+(Power op1, Power op2);
 };
 
