@@ -1,5 +1,7 @@
 #include <string>
 #include <vector>
+#include <memory>
+#include <iostream>
 
 using namespace std;
 
@@ -18,7 +20,33 @@ class Book {             //book可能會有幾萬筆資料。
 };
 
 int main() {
-    vector <Book> book_table;
+    vector <unique_ptr<Book>> book_table;
+ 
+    unique_ptr <Book> book1 = make_unique <Book>() ;
+    book1->name = "HarryPoter";
+    book1->all_pages = 10;
+    book1->ch.chap_name = "ch1";
+    book1->ch.pages = 2;
+    book1->ch.paragraph = 5;
+    book_table.push_back(std::move(book1));
+
+    unique_ptr <Book> book2 = make_unique <Book>() ;
+    book2->name = "WarI";
+    book2->all_pages = 20;
+    book2->ch.chap_name = "ch1";
+    book2->ch.pages = 3;
+    book2->ch.paragraph = 4;
+    book_table.push_back(std::move(book2));
+    
+    for (auto &elem : book_table) {
+        cout <<"name: " << elem->name << endl;
+        cout <<"pages: " << elem->all_pages << endl;
+        cout <<"chap name: " << elem->ch.chap_name << endl;
+        cout << endl;
+
+    }
+
+#if 0
     Book temp;
 
     temp.name = "Hello";
@@ -29,4 +57,5 @@ int main() {
     temp.ch.paragraph = 5;
 
     book_table.push_back(temp);
+#endif
 }
