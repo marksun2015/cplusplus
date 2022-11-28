@@ -22,4 +22,14 @@ int main() {
     cout << endl << *(h-1);     //顯示9
     cout << endl << *(h-2);     //顯示8
     cout << endl << *(h-3);     //顯示7
+
+    // iterator  
+    cout << endl;
+    cout << endl;
+    vector<int>::iterator begin = a.begin();
+    vector<int>::iterator end = a.end();
+    vector<int>::iterator it;
+    for(it = begin; it != end; it++) {
+            cout << *it << endl;
+    }
 }
