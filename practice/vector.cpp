@@ -17,4 +17,15 @@ int main() {
 
     for (auto elem : ivec1)
         std::cout << elem << std::endl;
+
+    std::cout << std::endl;
+    for (auto &elem : ivec1)
+        std::cout << elem << std::endl;
+    
+    std::cout << std::endl;
+    for (auto &elem : ivec1)
+        elem = 5;
+
+    for (auto elem : ivec1)
+        std::cout << elem << std::endl;
 }
