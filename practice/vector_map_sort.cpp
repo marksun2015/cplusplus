@@ -34,4 +34,18 @@ int main() {
 
     for(auto bt : book_table)
         std::cout << bt.first << " " << bt.second << std::endl;
+
+    ///////////////////////////////////////////////////////////////
+    map <string, int> price;
+    price.insert(std::make_pair("book1",30));
+    price.insert(std::make_pair("book2",60));
+    for (auto elem: price)
+        cout << elem.first <<endl;
+
+
+    std::vector <std::pair<string, int>> table;
+    table.push_back(std::make_pair("C++Primer",650)) ;
+    table.push_back(std::make_pair("HarryPotter",30));
+    for (auto elem: table)
+        cout << elem.first <<endl;
 }

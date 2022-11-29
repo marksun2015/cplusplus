@@ -85,7 +85,6 @@ void solve(std::istream &is, std::ostream &os) {
     
     unique_ptr <ToolPencil> pencil = make_unique <ToolPencil> ();
     unique_ptr <Box> box = make_unique <Box> (std::move(pencil));
-
     box->show();
     
 }
