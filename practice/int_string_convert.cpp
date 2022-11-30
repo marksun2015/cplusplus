@@ -21,7 +21,10 @@ int main() {
     cout << "convert to str type:" << convert_str <<endl;
     cout << "string to int" <<endl;
 
-    /* str to in */
+    //convert to string
+    std::string cs = std::to_string(5);
+
+    /* str to int */
     stringstream ss2;
     //std::stoi(str)
     string numberStr = "654321";
@@ -31,4 +34,8 @@ int main() {
     ss2 >> num;
     cout << "convert to num:" << num <<endl;
 
+    //convert to int
+    std::string strtest = "123";
+    // using stoi() to store the value of str1 to x
+    num = std::stoi(strtest);
 }
