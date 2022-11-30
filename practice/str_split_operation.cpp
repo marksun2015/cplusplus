@@ -17,11 +17,18 @@ const std::vector<std::string> split(const std::string &str, const char &delimit
 
 int main() {
     std::string str = "This is a c++ string";
+#if 1
     std::vector<std::string> ret = split(str, ' ');
-
     for (auto& s : ret) {
         cout << s << "\n";
     }
+#else
+    std::stringstream ss(str);
+    std::string tok;
+    while(getline(ss, tok, ' ')) {
+        cout  << tok <<std::endl;
+    }
+#endif
     
     std::string str2 = "This0is0a0c++0string";
     int pos = str2.find('s');
