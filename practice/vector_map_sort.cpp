@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//直接宣告
 std::map<int, std::string> studentMap = {
     {1, "Tom"},
     {3, "Jack"},
@@ -27,7 +28,7 @@ int main() {
     mp_price.insert({"DuckLife", 300});
     mp_price.insert(std::make_pair("Java",250));
 
-    book_table = {mp_price.begin(), mp_price.end()};
+    book_table = {mp_price.begin(), mp_price.end()}; //記下來, assign 方式
 
     //sort_price(mp_price, book_table);
     
