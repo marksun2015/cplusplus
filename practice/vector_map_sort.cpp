@@ -6,6 +6,12 @@
 
 using namespace std;
 
+std::map<int, std::string> studentMap = {
+    {1, "Tom"},
+    {2, "Jack"},
+    {3, "John"}
+};
+
 void sort_price(std::map<string, int> &strmap, vector<pair<string, int>> &vec) {
   vec = {strmap.begin(), strmap.end()};
   sort(vec.begin(), vec.end(),

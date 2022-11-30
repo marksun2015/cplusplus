@@ -7,6 +7,27 @@
 
 using namespace std;
 
+
+class Tool {
+    public:
+    virtual ~Tool() = default;
+    virtual void write() = 0; 
+};
+
+
+
+class ToolPencil : public Tool {
+    public:
+        explicit ToolPencil();
+        void write() override;
+}
+
+class ToolPen : public Tool {
+    public:
+        explicit ToolPen();
+        void write() override;
+}
+
 ///////////////////////////////////////
 class Tool {
     public:
