@@ -8,8 +8,8 @@ using namespace std;
 
 std::map<int, std::string> studentMap = {
     {1, "Tom"},
-    {2, "Jack"},
-    {3, "John"}
+    {3, "Jack"},
+    {6, "John"}
 };
 
 void sort_price(std::map<string, int> &strmap, vector<pair<string, int>> &vec) {
@@ -54,4 +54,8 @@ int main() {
     table.push_back(std::make_pair("HarryPotter",30));
     for (auto elem: table)
         cout << elem.first <<endl;
+    ///////////////////////////////////////////////////////////////
+    studentMap[1] = "Tom";
+    studentMap[3] = "Jack";
+    studentMap[6] = "John";
 }
