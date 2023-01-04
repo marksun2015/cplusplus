@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+//istream& getline(istream& is, string& str);
+//istream& getline(istream& is, string& str, char delimiter);
 const std::vector<std::string> split(const std::string &str, const char &delimiter) {
     std::vector<std::string> result;
     std::stringstream ss(str);
